@@ -1,4 +1,4 @@
 azure-eventhub
+python-dotenv
 black
 flake8
-python-dotenv
