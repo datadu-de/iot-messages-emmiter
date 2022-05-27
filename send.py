@@ -1,6 +1,7 @@
 import asyncio
 import datetime
 import json
+import logging
 import os
 import random
 from time import sleep
@@ -11,9 +12,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+logging.basicConfig(level=logging.INFO)
+
 
 def create_message(message_id=1):
-    return {
+    msg = {
         "timestamp": datetime.datetime.now().timestamp(),
         "color": random.choice(
             [
@@ -42,6 +45,10 @@ def create_message(message_id=1):
         "message_id": message_id,
     }
 
+    logging.info(msg)
+
+    return msg
+
 
 async def send_event_data(producer):
     # Without specifying partition_id or partition_key
@@ -62,7 +69,7 @@ async def run():
     )
 
     async with producer:
-        for _ in range(os.getenv("NUM_MESSAGES")):
+        for _ in range(int(os.getenv("NUM_MESSAGES"))):
             await send_event_data(producer)
             sleep(random.random() * os.getenv("SLEEP_INTERVAL"))
 
