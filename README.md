@@ -1,3 +1,3 @@
 # iot-messages-emmiter
 
-with 🧠 by TimeXtender
+with :brain: by [TimeXtender](https://timextender.com)
