@@ -14,9 +14,18 @@ load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 
+NORTHERNMOST = 49.0
+SOUTHERNMOST = 25.0
+EASTERNMOST = -66.0
+WESTERNMOST = -124.0
+
 
 def create_message(message_id=1):
     msg = {
+        "gps_coordinates": {
+            "lat": round(random.uniform(SOUTHERNMOST, NORTHERNMOST), 6),
+            "lng": round(random.uniform(EASTERNMOST, WESTERNMOST), 6),
+        },
         "timestamp": datetime.datetime.now().timestamp(),
         "color": random.choice(
             [
