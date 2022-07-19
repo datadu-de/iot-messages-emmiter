@@ -10,6 +10,8 @@ from azure.eventhub import EventData
 from azure.eventhub.aio import EventHubProducerClient
 from dotenv import load_dotenv
 
+from randomincountry import random_coords_in_country
+
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
@@ -22,10 +24,7 @@ WESTERNMOST = -124.0
 
 def create_message(message_id=1):
     msg = {
-        "gps_coordinates": {
-            "lat": round(random.uniform(SOUTHERNMOST, NORTHERNMOST), 6),
-            "lng": round(random.uniform(EASTERNMOST, WESTERNMOST), 6),
-        },
+        "gps_coords": random_coords_in_country(),
         "timestamp": datetime.datetime.now().timestamp(),
         "color": random.choice(
             [
