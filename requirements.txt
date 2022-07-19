@@ -2,3 +2,6 @@ azure-eventhub
 python-dotenv
 black
 flake8
+
+pyshp
+shapely
